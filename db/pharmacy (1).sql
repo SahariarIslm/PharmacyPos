@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2020 at 08:54 AM
+-- Generation Time: Dec 08, 2020 at 08:35 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -48,8 +48,11 @@ CREATE TABLE `batch_stocks` (
 --
 
 INSERT INTO `batch_stocks` (`id`, `name`, `code`, `expiry_date`, `batch_no`, `minimum`, `quantity`, `unit`, `cost`, `price`, `shop`, `created_at`, `updated_at`) VALUES
-(1, 'Napa', '202012011', '2021-01-09', '1', 1234, 36, 'mg', 1234.00, 123.00, 5, NULL, NULL),
-(2, 'Napa Extend', '202012012', '2021-01-09', '2', 120, 16, 'Select Medicine Unit', 220.00, 250.00, 5, NULL, NULL);
+(1, 'Napa', '202012011', '2021-01-09', '1', 1234, 37, 'mg', 1234.00, 123.00, 5, NULL, NULL),
+(2, 'Napa Extend', '202012012', '2021-01-09', '2', 120, 18, 'Select Medicine Unit', 220.00, 250.00, 5, NULL, NULL),
+(3, 'Napa', '202012011', '2021-01-09', '11', 1234, 0, 'mg', 1234.00, 123.00, 5, NULL, NULL),
+(4, 'Napa Extend', '202012012', '2021-01-09', '22', 120, 1, 'Select Medicine Unit', 220.00, 250.00, 5, NULL, NULL),
+(5, 'Napa Extend', '202012012', '2021-01-09', '3', 120, 7, 'Select Medicine Unit', 220.00, 250.00, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,7 +112,8 @@ CREATE TABLE `collections` (
 --
 
 INSERT INTO `collections` (`id`, `date`, `customer`, `delivery`, `invoice`, `paid`, `due`, `amount`, `details`, `shop`, `user`, `created_at`, `updated_at`) VALUES
-(1, '2020-11-25', '0', '1', 'INV320201', 400.00, 10.00, 0.00, NULL, 3, 3, '2020-11-25 09:28:45', '2020-11-25 09:28:45');
+(1, '2020-11-25', '0', '1', 'INV320201', 400.00, 10.00, 0.00, NULL, 3, 3, '2020-11-25 09:28:45', '2020-11-25 09:28:45'),
+(2, '2020-12-02', '0', NULL, 'INV520204', 400.00, 309.00, 0.00, NULL, 5, 5, '2020-12-02 06:34:14', '2020-12-02 06:34:14');
 
 -- --------------------------------------------------------
 
@@ -426,8 +430,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2020_02_18_114805_create_purchases_table', 1),
 (9, '2020_02_18_115320_create_purchase_items_table', 1),
 (10, '2020_02_20_111658_create_sales_table', 1),
-(11, '2020_02_20_112511_create_sale_items_table', 1),
-(12, '2020_02_20_113900_create_stocks_table', 1),
 (13, '2020_02_23_161728_create_purchase_cancels_table', 1),
 (14, '2020_02_24_155630_create_sale_cancels_table', 1),
 (15, '2020_02_27_141338_create_expenses_table', 1),
@@ -456,7 +458,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2016_06_01_000003_create_oauth_refresh_tokens_table', 6),
 (45, '2016_06_01_000004_create_oauth_clients_table', 6),
 (46, '2016_06_01_000005_create_oauth_personal_access_clients_table', 6),
-(47, '2020_02_17_145049_create_products_table', 7);
+(47, '2020_02_17_145049_create_products_table', 7),
+(48, '2020_02_20_113900_create_stocks_table', 8),
+(49, '2020_02_20_112511_create_sale_items_table', 9);
 
 -- --------------------------------------------------------
 
@@ -533,6 +537,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('aba993bffc7a56c68a98aef9797329321ebdf55106edd0b32408c9b7ae9fdc0137b5efccba12e155', 3, 1, 'MyApp', '[]', 0, '2020-11-28 08:08:13', '2020-11-28 08:08:13', '2021-11-28 14:08:13'),
 ('abbce1105da8b8ddc7daaa9d64997b7b335a6f51f78b1bd079ee8cd61abb315ebf04dad473d6b124', 3, 1, 'MyApp', '[]', 0, '2020-11-26 11:24:48', '2020-11-26 11:24:48', '2021-11-26 17:24:48'),
 ('ace44a189e35939d833f3a78ed48fb5b5022f40bfb24702b55d3b4cc6325d6e16bbbe163b52a2e01', 3, 1, 'MyApp', '[]', 0, '2020-11-29 08:28:42', '2020-11-29 08:28:42', '2021-11-29 14:28:42'),
+('ad70b1bab557ea6eeba6f87ddf3a8824a85d384247527521fe5ef926465e592d5c64a6218ff90752', 3, 1, 'MyApp', '[]', 0, '2020-12-02 09:45:41', '2020-12-02 09:45:41', '2021-12-02 15:45:41'),
 ('b05ca5b264c0360ea23f0d997bf4349e8d3e9284c1ebc731057f89de75d4130f24cd2aaeb3874b6a', 3, 1, 'MyApp', '[]', 0, '2020-11-29 08:01:56', '2020-11-29 08:01:56', '2021-11-29 14:01:56'),
 ('b74dd9db12a9ac3d69de92d0c1c840c04c7495ad0434ba7d74526021778c10015512ccfb6f22c9e2', 3, 1, 'MyApp', '[]', 0, '2020-11-26 11:26:20', '2020-11-26 11:26:20', '2021-11-26 17:26:20'),
 ('b7b255bf4317fdeb5ea51ecd1d9cbc660bccf86d32ba41c04557889daecf4b943996d68c83f4c559', 3, 1, 'MyApp', '[]', 0, '2020-11-30 11:36:39', '2020-11-30 11:36:39', '2021-11-30 17:36:39'),
@@ -729,7 +734,11 @@ INSERT INTO `payments` (`id`, `date`, `supplier`, `purchase_no`, `paid`, `due`, 
 (50, '2020-11-30', 'Abul Mia', 'PO32020113094', 2.00, 3408.00, 0.00, NULL, 3, 3, '2020-11-30 09:47:28', '2020-11-30 09:47:28'),
 (51, '2020-11-30', 'Abul Mia', 'PO3202011301', 1.00, 2920.00, 0.00, NULL, 3, 3, '2020-11-30 10:04:08', '2020-11-30 10:04:08'),
 (52, '2020-11-30', 'Sahariar', 'PO32020113096', 399.00, 183.00, 0.00, NULL, 3, 3, '2020-11-30 10:05:35', '2020-11-30 10:05:35'),
-(53, '2020-12-01', 'Korim', 'PO52020120197', 20000.00, 15298.00, 0.00, NULL, 5, 5, '2020-12-01 07:33:02', '2020-12-01 07:33:02');
+(53, '2020-12-01', 'Korim', 'PO52020120197', 20000.00, 15298.00, 0.00, NULL, 5, 5, '2020-12-01 07:33:02', '2020-12-01 07:33:02'),
+(54, '2020-12-02', 'Korim', 'PO520201202101', 400.00, 1241.00, 0.00, NULL, 5, 5, '2020-12-02 04:17:14', '2020-12-02 04:17:14'),
+(55, '2020-12-02', 'Korim', 'PO520201202103', 3.00, 2391.00, 0.00, NULL, 3, 3, '2020-12-02 10:09:24', '2020-12-02 10:09:24'),
+(56, '2020-12-03', 'Korim', 'PO520201203104', 400.00, 16874.00, 0.00, NULL, 5, 5, '2020-12-03 05:33:57', '2020-12-03 05:33:57'),
+(57, '2020-12-02', 'Korim', 'PO520201202103', 3.00, 2391.00, 0.00, NULL, 3, 3, '2020-12-06 09:07:02', '2020-12-06 09:07:02');
 
 -- --------------------------------------------------------
 
@@ -805,7 +814,12 @@ INSERT INTO `purchases` (`id`, `purchase_no`, `supplier`, `date`, `totalQty`, `s
 (97, 'PO52020120197', 'Korim', '2020-12-01', 40, 39220.00, 10.00, '%', 35298.00, 20000.00, 0.00, 15298.00, 'Cash', 5, 5, '2020-12-01 07:33:02', '2020-12-01 07:33:02'),
 (98, 'PO52020120198', 'Korim', '2020-12-01', 8, 5816.00, 10.00, '%', 5234.00, 20000.00, 14766.00, 0.00, 'Cash', 5, 5, '2020-12-01 07:36:24', '2020-12-01 07:36:24'),
 (99, 'PO52020120198', 'Korim', '2020-12-01', 8, 5816.00, 10.00, '%', 5234.00, 20000.00, 14766.00, 0.00, 'Cash', 5, 5, '2020-12-01 07:37:59', '2020-12-01 07:37:59'),
-(100, 'PO520201201100', 'Korim', '2020-12-01', 4, 2908.00, 0.00, '%', 2908.00, 20000.00, 17092.00, 0.00, 'Cash', 5, 5, '2020-12-01 07:39:22', '2020-12-01 07:39:22');
+(100, 'PO520201201100', 'Korim', '2020-12-01', 4, 2908.00, 0.00, '%', 2908.00, 20000.00, 17092.00, 0.00, 'Cash', 5, 5, '2020-12-01 07:39:22', '2020-12-01 07:39:22'),
+(101, 'PO520201202101', 'Korim', '2020-12-02', 3, 1674.00, 2.00, '%', 1641.00, 400.00, 0.00, 1241.00, 'Cash', 5, 5, '2020-12-02 04:17:14', '2020-12-02 04:17:14'),
+(102, 'PO520201202102', 'Korim', '2020-12-02', 4, 2908.00, 2.00, '%', 2850.00, 20000.00, 17150.00, 0.00, 'Cash', 5, 5, '2020-12-02 04:17:59', '2020-12-02 04:17:59'),
+(103, 'PO520201202103', 'Korim', '2020-12-02', 2, 2468.00, 3.00, '%', 2394.00, 3.00, NULL, 2391.00, 'Cash', 3, 3, '2020-12-02 10:09:24', '2020-12-02 10:09:24'),
+(104, 'PO520201203104', 'Korim', '2020-12-03', 24, 17448.00, 1.00, '%', 17274.00, 400.00, 0.00, 16874.00, 'Cash', 5, 5, '2020-12-03 05:33:57', '2020-12-03 05:33:57'),
+(105, 'PO520201202103', 'Korim', '2020-12-02', 2, 2468.00, 3.00, '%', 2394.00, 3.00, NULL, 2391.00, 'Cash', 3, 3, '2020-12-06 09:07:02', '2020-12-06 09:07:02');
 
 -- --------------------------------------------------------
 
@@ -868,7 +882,15 @@ INSERT INTO `purchase_items` (`id`, `purchase_no`, `name`, `code`, `date`, `expi
 (170, 'PO52020120198', 'Napa', '202012011', '2020-12-01', '2021-06-09', '1', 4, 1234.00, 4936.00, 5, 5, NULL, NULL),
 (171, 'PO52020120198', 'Napa Extend', '202012012', '2020-12-01', '2021-06-09', '2', 4, 220.00, 880.00, 5, 5, NULL, NULL),
 (172, 'PO520201201100', 'Napa', '202012011', '2020-12-01', '2021-01-09', '1', 2, 1234.00, 2468.00, 5, 5, NULL, NULL),
-(173, 'PO520201201100', 'Napa Extend', '202012012', '2020-12-01', '2021-01-09', '2', 2, 220.00, 440.00, 5, 5, NULL, NULL);
+(173, 'PO520201201100', 'Napa Extend', '202012012', '2020-12-01', '2021-01-09', '2', 2, 220.00, 440.00, 5, 5, NULL, NULL),
+(174, 'PO520201202101', 'Napa', '202012011', '2020-12-02', NULL, '1', 1, 1234.00, 1234.00, 5, 5, NULL, NULL),
+(175, 'PO520201202101', 'Napa Extend', '202012012', '2020-12-02', NULL, '2', 2, 220.00, 440.00, 5, 5, NULL, NULL),
+(176, 'PO520201202102', 'Napa', '202012011', '2020-12-02', NULL, '11', 2, 1234.00, 2468.00, 5, 5, NULL, NULL),
+(177, 'PO520201202102', 'Napa Extend', '202012012', '2020-12-02', NULL, '22', 2, 220.00, 440.00, 5, 5, NULL, NULL),
+(178, 'PO520201202103', 'Napa', '202012011', '2020-12-02', '2021-01-09', '1', 2, 1234.00, 2468.00, 3, 3, NULL, NULL),
+(179, 'PO520201203104', 'Napa', '202012011', '2020-12-03', NULL, '11', 12, 1234.00, 14808.00, 5, 5, NULL, NULL),
+(180, 'PO520201203104', 'Napa Extend', '202012012', '2020-12-03', NULL, '3', 12, 220.00, 2640.00, 5, 5, NULL, NULL),
+(181, 'PO520201202103', 'Napa', '202012011', '2020-12-02', '2021-01-09', '1', 2, 1234.00, 2468.00, 3, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -937,7 +959,11 @@ CREATE TABLE `sales` (
 
 INSERT INTO `sales` (`id`, `sale_no`, `customer`, `delivery`, `date`, `totalQty`, `subTotal`, `discount`, `d_type`, `dCharge`, `payable`, `paid`, `return`, `due`, `p_type`, `shop`, `user`, `created_at`, `updated_at`) VALUES
 (1, 'INV320201', '0', '1', '2020-11-25', 2, 400.00, 10.00, '%', 50.00, 410.00, 400.00, 0.00, 10.00, 'Cash', 3, 'Demo CRM', '2020-11-25 09:28:45', '2020-11-25 09:28:45'),
-(2, 'INV320202', '0', '1', '2020-11-27', 100, 20600.00, 10.00, '%', 0.00, 18540.00, 20000.00, 1460.00, 0.00, 'Cash', 3, 'Demo CRM', '2020-11-27 08:24:40', '2020-11-27 08:24:40');
+(2, 'INV320202', '0', '1', '2020-11-27', 100, 20600.00, 10.00, '%', 0.00, 18540.00, 20000.00, 1460.00, 0.00, 'Cash', 3, 'Demo CRM', '2020-11-27 08:24:40', '2020-11-27 08:24:40'),
+(3, 'INV520203', '0', NULL, '2020-12-02', 2, 373.00, 5.00, '%', 0.00, 354.00, 400.00, 46.00, 0.00, 'Cash', 5, 'Emon Hossain', '2020-12-02 06:26:00', '2020-12-02 06:26:00'),
+(4, 'INV520204', '0', NULL, '2020-12-02', 4, 746.00, 5.00, '%', 0.00, 709.00, 400.00, 0.00, 309.00, 'Cash', 5, 'Emon Hossain', '2020-12-02 06:34:14', '2020-12-02 06:34:14'),
+(5, 'INV520205', '0', NULL, '2020-12-03', 1, 250.00, 5.00, '%', 0.00, 238.00, 400.00, 162.00, 0.00, 'Cash', 5, 'Emon Hossain', '2020-12-03 05:29:25', '2020-12-03 05:29:25'),
+(6, 'INV520206', '0', NULL, '2020-12-03', 5, 1250.00, 0.00, '%', 0.00, 1250.00, 20000.00, 18750.00, 0.00, 'Cash', 5, 'Emon Hossain', '2020-12-03 09:52:01', '2020-12-03 09:52:01');
 
 -- --------------------------------------------------------
 
@@ -969,6 +995,8 @@ CREATE TABLE `sale_items` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sale_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `batch_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` date NOT NULL,
   `qty` int(11) DEFAULT NULL,
@@ -984,10 +1012,13 @@ CREATE TABLE `sale_items` (
 -- Dumping data for table `sale_items`
 --
 
-INSERT INTO `sale_items` (`id`, `sale_no`, `name`, `code`, `date`, `qty`, `price`, `total`, `shop`, `user`, `created_at`, `updated_at`) VALUES
-(1, 'INV320201', 'Napa 50', '202011251', '2020-11-25', 1, 200.00, 200.00, 3, 3, NULL, NULL),
-(2, 'INV320201', 'Napa Extend', '202011252', '2020-11-25', 1, 200.00, 200.00, 3, 3, NULL, NULL),
-(3, 'INV320202', 'Napa Extend', '202011252', '2020-11-27', 100, 206.00, 20600.00, 3, 3, NULL, NULL);
+INSERT INTO `sale_items` (`id`, `sale_no`, `name`, `batch_no`, `expiry_date`, `code`, `date`, `qty`, `price`, `total`, `shop`, `user`, `created_at`, `updated_at`) VALUES
+(1, 'INV520203', 'Napa Extend', '22', '2021-01-09', '202012012', '2020-12-02', 1, 250.00, 250.00, 5, 5, NULL, NULL),
+(2, 'INV520203', 'Napa', '11', '2021-01-09', '202012011', '2020-12-02', 1, 123.00, 123.00, 5, 5, NULL, NULL),
+(3, 'INV520204', 'Napa Extend', '22', '2021-01-09', '202012012', '2020-12-02', 2, 250.00, 500.00, 5, 5, NULL, NULL),
+(4, 'INV520204', 'Napa', '1', '2021-01-09', '202012011', '2020-12-02', 2, 123.00, 246.00, 5, 5, NULL, NULL),
+(5, 'INV520205', 'Napa Extend', '22', '2021-01-09', '202012012', '2020-12-03', 1, 250.00, 250.00, 5, 5, NULL, NULL),
+(6, 'INV520206', 'Napa Extend', '3', '2021-01-09', '202012012', '2020-12-03', 5, 250.00, 1250.00, 5, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1118,8 @@ INSERT INTO `shop_payments` (`id`, `date`, `package`, `price`, `days`, `type`, `
 (3, '2020-11-01', 'Free Demo Package', '0', '15', NULL, NULL, NULL, 0, 4, '2020-11-01 07:59:21', '2020-11-01 08:45:06'),
 (4, '2020-11-01', 'Enterprise', '1500', '30', 'Bkash', '1324536475869', 'dfsgdhf', 0, 4, '2020-11-01 08:41:37', '2020-11-01 08:45:06'),
 (5, '2020-11-01', 'Professional', '1000', '30', 'Bkash', '123456789', NULL, 1, 4, '2020-11-01 08:45:06', '2020-11-01 08:45:06'),
-(6, '2020-12-01', 'Free Demo Package', '0', '15', NULL, NULL, NULL, 1, 5, '2020-12-01 07:14:19', '2020-12-01 07:14:19');
+(6, '2020-12-01', 'Free Demo Package', '0', '15', NULL, NULL, NULL, 0, 5, '2020-12-01 07:14:19', '2020-12-01 07:59:51'),
+(7, '2020-12-01', 'Enterprise', '1500', '30', 'Bkash', '45678', NULL, 1, 5, '2020-12-01 07:59:51', '2020-12-01 07:59:51');
 
 -- --------------------------------------------------------
 
@@ -1099,6 +1131,7 @@ CREATE TABLE `stocks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `batch_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `minimum` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1114,15 +1147,9 @@ CREATE TABLE `stocks` (
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`id`, `name`, `code`, `minimum`, `quantity`, `unit`, `cost`, `price`, `shop`, `user`, `created_at`, `updated_at`) VALUES
-(99, 'Dexpoten', '51435', NULL, 1, 'mg', 1000.00, 150.00, 3, 3, NULL, NULL),
-(100, 'wine', '51434', NULL, 1, 'mg', 10.00, 15.00, 3, 3, NULL, NULL),
-(101, 'wine', '51433', NULL, 1, 'mg', 1200.00, 15.00, 3, 3, NULL, NULL),
-(102, 'drinks', '511232143', NULL, 1, 'ml', 740.00, 1000.00, 3, 3, NULL, NULL),
-(103, 'Napa 50', '202011251', 123457, 3, 'mg', 120.00, 200.00, 3, 3, NULL, NULL),
-(104, 'Napa Extend', '202011252', 123, 2, 'mg', 140.00, 200.00, 3, 3, NULL, NULL),
-(105, 'Napa', '202012011', 1234, 40, 'mg', 373.00, 123.00, 5, 5, NULL, NULL),
-(106, 'Napa Extend', '202012012', 120, 20, 'Select Medicine Unit', 246.25, 250.00, 5, 5, NULL, NULL);
+INSERT INTO `stocks` (`id`, `name`, `code`, `batch_no`, `minimum`, `quantity`, `unit`, `cost`, `price`, `shop`, `user`, `created_at`, `updated_at`) VALUES
+(1, 'Napa', '202012011', '1', 1234, 16, 'mg', 232.12, 123.00, 5, 5, NULL, NULL),
+(2, 'Napa Extend', '202012012', '2', 120, 13, 'Select Medicine Unit', 242.50, 250.00, 5, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1264,9 +1291,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `mobile`, `email`, `role`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Demo Reference', '01910000000', 'reference@gmail.com', 'Reference', 'Active', NULL, '$2y$10$1KjPrsV3lVqxyASb/.mL8OVGS11eAfbakvpYegvY7.pxAeVZbos5K', NULL, '2020-07-07 17:00:00', NULL),
 (2, 'Super Admin', '01210000000', 'demo@gmail.com', 'SuperAdmin', 'Active', NULL, '$2y$10$1KjPrsV3lVqxyASb/.mL8OVGS11eAfbakvpYegvY7.pxAeVZbos5K', 'PDumTK41FJ0dX6LVJy2puO8lMeWrmbwH0MtlGLfEjB6y8Ty7L1MZaCAFdip4', '2020-07-07 16:44:18', '2020-07-07 16:44:18'),
-(3, 'Demo CRM', '01410000000', 'new@gmail.com', 'Admin', 'Active', NULL, '$2y$10$1KjPrsV3lVqxyASb/.mL8OVGS11eAfbakvpYegvY7.pxAeVZbos5K', '5q8nJbbA8a0zqFGGbEAW9xpK6hcJq1xV7wjCY3b2ZOtkHOxh7zk8ZMj9KqtW', '2020-07-07 17:11:35', '2020-07-07 17:11:35'),
+(3, 'Demo CRM', '01410000000', 'new@gmail.com', 'Admin', 'Active', NULL, '$2y$10$1KjPrsV3lVqxyASb/.mL8OVGS11eAfbakvpYegvY7.pxAeVZbos5K', 'qYpZcQxdByOje0kVFHeEvR36lfMoNYQByEWI05e9VtKctCOA9pHm2NbowgJm', '2020-07-07 17:11:35', '2020-07-07 17:11:35'),
 (4, 'mONIR', '01909642730', 'monir@gmail.com', 'Admin', 'Active', NULL, '$2y$10$1KjPrsV3lVqxyASb/.mL8OVGS11eAfbakvpYegvY7.pxAeVZbos5K', '57HP22LHwsXSKGcP4svVQP3BQEd6iO2FFTy5RtNmeS1keLwFkCipKhkr1HAF', '2020-11-01 07:59:21', '2020-11-01 07:59:21'),
-(5, 'Emon Hossain', '01940000000', 'emon@gmail.com', 'Admin', 'Active', NULL, '$2y$10$CM18WcrAbET/r30JJVRZ3.oddYof0/MWxPVeg0Myfu8CUvip7P3xK', NULL, '2020-12-01 07:14:19', '2020-12-01 07:14:19');
+(5, 'Emon Hossain', '01940000000', 'emon@gmail.com', 'Admin', 'Active', NULL, '$2y$10$CM18WcrAbET/r30JJVRZ3.oddYof0/MWxPVeg0Myfu8CUvip7P3xK', 'kBlG0nU0EUER1K29siYCq6zAbzqkoiqqjt7NVos5WwVKKmSQWXEu9OyPVlKc', '2020-12-01 07:14:19', '2020-12-01 07:14:19');
 
 --
 -- Indexes for dumped tables
@@ -1545,7 +1572,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `batch_stocks`
 --
 ALTER TABLE `batch_stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1557,7 +1584,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `collections`
 --
 ALTER TABLE `collections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -1629,7 +1656,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -1647,7 +1674,7 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1659,7 +1686,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `purchase_cancels`
@@ -1671,7 +1698,7 @@ ALTER TABLE `purchase_cancels`
 -- AUTO_INCREMENT for table `purchase_items`
 --
 ALTER TABLE `purchase_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `references`
@@ -1689,7 +1716,7 @@ ALTER TABLE `reference_payments`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sale_cancels`
@@ -1701,7 +1728,7 @@ ALTER TABLE `sale_cancels`
 -- AUTO_INCREMENT for table `sale_items`
 --
 ALTER TABLE `sale_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shops`
@@ -1725,13 +1752,13 @@ ALTER TABLE `shop_packages`
 -- AUTO_INCREMENT for table `shop_payments`
 --
 ALTER TABLE `shop_payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subscribers`

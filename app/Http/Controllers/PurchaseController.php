@@ -39,17 +39,7 @@ class PurchaseController extends Controller
         return view('Admin.Purchase.purchase', compact('suppliers','sl','product'));
     }
 
-    // public function subCat(Request $request)
-    // {
-         
-    //     $manufacturer = $request->manufacturer;
-         
-    //     $medicines = Product::where('manufacturer',$manufacturer)
-    //                         ->get();
-    //     return response()->json([
-    //         'subcategories' => $subcategories
-    //     ]);
-    // }
+    
 
     public function clientinfo(){
         $clientInfo = Supplier::where('status',1)

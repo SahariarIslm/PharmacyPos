@@ -244,19 +244,19 @@ class PurchaseController extends Controller
             }                
             PurchaseItem::insert($postData);
 
-
-
-
+            $totalProduct = count($request->medicine_id);
             $stdata = [];
-            for ($i=0; $i <$countProduct ; $i++) { 
-                $name = Product::find($request->medicine_id[$i])->name;
-                $price = Product::find($request->medicine_id[$i])->seller_price;
+
+            for ($i=0; $i <$totalProduct ; $i++) { 
+                $name    = Product::find($request->medicine_id[$i])->name;
+                $price   = Product::find($request->medicine_id[$i])->seller_price;
                 $minimum = Product::find($request->medicine_id[$i])->min_stock;
-                $unit = Product::find($request->medicine_id[$i])->medicine_unit;
+                $unit    = Product::find($request->medicine_id[$i])->medicine_unit;
 
                 $stdata[] = [
                 'code'      => $request->code[$i],
                 'name'      => $name,
+                'batch_no'  => $request->batch_no[$i],
                 'quantity'  => $request->qty[$i],
                 'cost'      => $request->cost[$i],
                 'price'     => $price,
@@ -265,38 +265,92 @@ class PurchaseController extends Controller
                 'user'      => Auth::user()->id,
                 'shop'      => Auth::user()->id,
                 ];
-            
+            }  
+
+            $totalStock = count($stdata);
+
+            for ($i=0; $i < $totalStock ; $i++) {
 
                 $exist = DB::table('stocks')
-                            ->where('code', $request->code[$i])
-                            ->first();
-            
+                        ->where('code', $stdata[$i]['code'])
+                        ->first();
+
                 if($exist == null)//if doesn't exist: create
                 {
-                    $insert = DB::table('stocks')->insert($stdata);
-                }
-                else //if exist: update
+                    $insert = DB::table('stocks')->insert($stdata[$i]);
+                }else //if exist: update
                 {
                     //if purchase cost is same as stock cost
                     if($exist->cost == $price)
                     {
                         $update = DB::table('stocks')
-                                    ->where('code', $request->code[$i])
-                                    ->increment('quantity', $request->qty[$i]);
+                                    ->where('code', $stdata[$i]['code'])
+                                    ->increment('quantity', $stdata[$i]['quantity']);
                     }
                     //if purchase cost is not same as stock cost
                     else 
                     {
                         $newCost = ($exist->cost + $price) / 2;
                         $update = DB::table('stocks')
-                                    ->where('code', $request->code[$i])
-                                    ->increment('quantity', $request->qty[$i]);
+                                    ->where('code', $stdata[$i]['code'])
+                                    ->increment('quantity', $stdata[$i]['quantity']);
                         $update = DB::table('stocks')
-                                    ->where('code', $request->code[$i])
+                                    ->where('code', $stdata[$i]['code'])
                                     ->update(['cost' => $newCost]);
                     }
                 }
+
+            }  
+
+            $totalBatch = count($request->medicine_id);
+            $bdata = [];
+
+            for ( $i = 0 ; $i < $totalBatch ; $i++ ) { 
+                $name    = Product::find($request->medicine_id[$i])->name;
+                $price   = Product::find($request->medicine_id[$i])->seller_price;
+                $minimum = Product::find($request->medicine_id[$i])->min_stock;
+                $unit    = Product::find($request->medicine_id[$i])->medicine_unit;
+
+                $bdata[] = [
+                    'name'         => $name,
+                    'code'         => $request->code[$i],
+                    'batch_no'     => $request->batch_no[$i],
+                    'expiry_date'  => $request->expiry_date[$i],
+                    'minimum'      => $minimum,
+                    'quantity'     => $request->qty[$i],
+                    'unit'         => $unit,
+                    'cost'         => $request->cost[$i],
+                    'price'        => $price,
+                    'shop'         => Auth::user()->id,
+                ];
             }
+
+            $totalBatchStock = count($bdata);
+
+            for ($i=0; $i < $totalBatchStock ; $i++) {
+
+                $codeexist = DB::table('batch_stocks')
+                        ->where('code', $bdata[$i]['code'])
+                        ->first();
+
+                if($codeexist == null) {
+                    $insert = DB::table('batch_stocks')->insert($bdata[$i]);
+                } else {
+                    $batchexist = DB::table('batch_stocks')
+                                    ->where('batch_no', $bdata[$i]['batch_no'])
+                                    ->first();
+                    if($batchexist == null) {
+                        $insert = DB::table('batch_stocks')->insert($bdata[$i]);
+                    } else {
+                        $update = DB::table('batch_stocks')
+                                    ->where('code', $bdata[$i]['code'])
+                                    ->where('batch_no', $bdata[$i]['batch_no'])
+                                    ->increment('quantity', $bdata[$i]['quantity']);
+                    }
+                }
+                
+            }
+            
         }
         
         $msg = 'Products Purchased Successfully !!';
