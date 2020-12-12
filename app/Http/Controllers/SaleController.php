@@ -72,7 +72,7 @@ class SaleController extends Controller
             'quantity' => 1,
 
             'attributes' => array(
-                'batch_no'     => $products->batch_no,
+                'cost'         => $products->cost,
                 'expiry_date'  => $products->expiry_date,
                 'code'         => $products->code,
                 'unit'         => $products->unit,
@@ -89,7 +89,7 @@ class SaleController extends Controller
             // 'quantity' => $request->qty
             'quantity' => array(
                 'relative' => false,
-                'value' => $request->qty
+                'value'    => $request->qty
             ),
         ));
         $msg = "Quantity Updated Successfully ....";

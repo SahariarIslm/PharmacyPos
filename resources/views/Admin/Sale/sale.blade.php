@@ -154,7 +154,7 @@
                                 class="selectpicker form-control iTEmCoDe" name="iTEmCoDe" id="iTEmCoDe" data-style="btn-info">
                                 @foreach($product as $product)
                                 <option value="{{ $product->id }}">
-                                    {{ $product->name }} (batch: {{ $product->batch_no }} )
+                                    {{ $product->name }} (price: {{ $product->seller_price }})
                                 </option>
                                 @endforeach
                             </select>
@@ -212,8 +212,8 @@
                                         <tr>
                                             <th style="text-align: center;">SL.</th>
                                             <th style="text-align: center; width: 250px">Name</th>
-                                            <th style="text-align: center;">Batch</th>
-                                            <th style="text-align: center; width: 100px">Expiry</th>
+                                            <th style="text-align: center;">Cost</th>
+                                            {{-- <th style="text-align: center; width: 100px">Expiry</th> --}}
                                             <th style="text-align: center; width: 80px">Quantity</th>
                                             <th style="text-align: center; width: 100px">Price</th>
                                             <th style="text-align: center; width: 100px">Total</th>
@@ -229,12 +229,12 @@
                                                 <td>
                                                     <input class="iTEmBatch text-center form-control" 
                                                         type="text" title="{{ $item->id }}"
-                                                        value="{{ $item->attributes->batch_no }}" readonly>
+                                                        value="{{ $item->attributes->cost }}" readonly>
                                                 </td>
-                                                <td>
+                                                <td style="display: none">
                                                     <input class="iTEmExpiry text-center form-control" 
                                                         type="date" title="{{ $item->id }}"
-                                                        value="{{ $item->attributes->expiry_date }}" readonly>
+                                                        value="{{ $item->attributes->expiry_date }}" readonly style="display: none">
                                                 </td>
                                                 <td>
                                                     <input class="iTEmQty text-center form-control" 
